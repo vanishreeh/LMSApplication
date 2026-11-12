@@ -31,7 +31,7 @@ jobs:
 
       # Step 4: Compile application and test project
       - name: Build Solution
-        run: dotnet build LMSApp.sln --configuration Release --no-restore
+        run: dotnet build LMSApp.slnx --configuration Release --no-restore
 
       # Step 5: Execute unit tests
       - name: Run Unit Tests
