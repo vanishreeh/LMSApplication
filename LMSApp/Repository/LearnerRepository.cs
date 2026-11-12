@@ -17,7 +17,7 @@ namespace LMSApp.Repository
                 Name = "Rahul",
                 Email = "rahul@gmail.com",
                 Course = "C#",
-                Age = 25
+                Age = 26
             },
             new Learner
             {
