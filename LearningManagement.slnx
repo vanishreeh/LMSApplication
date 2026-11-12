@@ -1,4 +1,8 @@
 <Solution>
+  <Folder Name="/.github/" />
+  <Folder Name="/.github/workflows/">
+    <File Path="dotnet-ci.yml" />
+  </Folder>
   <Project Path="LMSApp/LMSApp.csproj" />
   <Project Path="LMSAppTest/LMSAppTest.csproj" />
 </Solution>
