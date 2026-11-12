@@ -1,1 +1,51 @@
 
+name: LMSApp - Build and Test
+
+on:
+  push:
+    branches:
+      - master
+
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Download source code
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Step 2: Install .NET SDK
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      # Step 3: Restore NuGet packages
+      - name: Restore Dependencies
+        run: dotnet restore LMSApp.sln
+
+      # Step 4: Compile application and test project
+      - name: Build Solution
+        run: dotnet build LMSApp.sln --configuration Release --no-restore
+
+      # Step 5: Execute unit tests
+      - name: Run Unit Tests
+        run: dotnet test LMSAppTest/LMSAppTest.csproj --configuration Release --no-build
+
+      # Step 6: Publish application
+      - name: Publish LMSApp
+        run: dotnet publish LMSApp/LMSApp.csproj -c Release -o ./publish
+
+      # Step 7: Upload build artifact
+      - name: Upload Build Artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: actions/upload-artifact@v4
+        with:
+          name: LMSApp-Application
+          path: ./publish/
+          retention-days: 7
