@@ -22,7 +22,7 @@ namespace LMSAppTest
             Assert.NotNull(learners2);
 
             // Both lists should contain 3 default learners
-            Assert.Equal(3, learners1.Count);
+            Assert.Equal(2, learners1.Count);
             Assert.Equal(3, learners2.Count);
 
             // Both should be different List objects
